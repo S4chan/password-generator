@@ -3,7 +3,11 @@ const app = express();
 const port = 3000;
 
 app.get("/", (req, res) => {
-  res.send("express app for password");
+  res.redirect("/password-random");
+});
+
+app.get("/password-random", (req, res) => {
+  res.render("index");
 });
 
 app.listen(port, () => {
