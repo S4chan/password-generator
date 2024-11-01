@@ -2,6 +2,7 @@ const express = require("express");
 const { engine } = require("express-handlebars");
 const app = express();
 const port = 3000;
+const { generatePassword } = require("./password");
 
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
@@ -12,9 +13,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/", (req, res) => {
-  const password = generatePassword(req.body);
-  res.render("index", { password: password });
+app.post("/generate", (req, res) => {
+  const options = req.body;
+  const password = generatePassword(options);
+  res.render("index", { password: password, options: options });
 });
 
 app.listen(port, () => {

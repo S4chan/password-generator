@@ -1,17 +1,13 @@
-function generatePassword() {
+function random(collection) {
+  let randomIndex = Math.floor(Math.random() * collection.length);
+  return collection[randomIndex];
+}
+
+function generatePassword(options) {
   const lowercase = "abcdefghijklmnopqrstuvwxyz";
   const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const numbers = "0123456789";
   const symbols = '`~!@$%^&*()-_+={}[]|;:"<>,.?/';
-
-  const options = {
-    length: "12",
-    lowercase: "on",
-    uppercase: "on",
-    numbers: "on",
-    symbols: "on",
-    excludeCharacters: "",
-  };
 
   let collection = [];
 
@@ -32,10 +28,21 @@ function generatePassword() {
   }
 
   if (options.excludeCharacters) {
-    collection = collection.filter((character) => {
-      return !options.excludeCharacters.includes(character);
-    });
+    collection = collection.filter(
+      (character) => !options.excludeCharacters.includes(character)
+    );
   }
+
+  if (collection.length === 0) {
+    return "There is no valid characters in your selection.";
+  }
+
+  let password = "";
+  for (let i = 1; i <= Number(options.length); i++) {
+    password += random(collection);
+  }
+
+  return password;
 }
 
-generatePassword();
+module.exports = { generatePassword };
