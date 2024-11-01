@@ -9,11 +9,12 @@ app.set("views", "./views");
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.redirect("/password-random");
+  res.render("index");
 });
 
-app.get("/password-random", (req, res) => {
-  res.render("index");
+app.post("/", (req, res) => {
+  const password = generatePassword(req.body);
+  res.render("index", { password: password });
 });
 
 app.listen(port, () => {
