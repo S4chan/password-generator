@@ -3,12 +3,12 @@
     <div class="col-8 mx-auto">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Random Password Generator
-            <i class="fas fa-kay"></i></h5>
+          <h5 class="card-title fw-bold">Random Password Generator
+            <i class="fa-solid fa-key"></i></h5>
           <hr />
-          <form action="/" method="POST">
+          <form action="/generate" method="POST">
             <div class="form-group form-row d-flex">
-              <label for="length" class="col-md-4 col-form-label">
+              <label for="length" class="col-md-4 col-form-label fw-bold">
                 Password Length
               </label>
               <div class="col-md-8">
@@ -19,13 +19,14 @@
                   id="Length"
                   min="4"
                   max="16"
+                  value={{options.length}}
                 />
                 <small style="color:gray">Length is availabe between 4 ~ 16</small>
               </div>
             </div>
 
             <div class="form-group form-row mb-2 d-flex align-items-center">
-              <label for="lowercase" class="col-md-4 col-form-label">Include
+              <label for="lowercase" class="col-md-4 col-form-label fw-bold">Include
                 Lowercase Characters</label>
               <div class="col-md-8">
                 <div class="form-check form-switch">
@@ -34,14 +35,15 @@
                     type="checkbox"
                     id="lowercase"
                     name="lowercase"
+                    {{#if options.lowercase}}checked{{/if}}
                   />
-                  <label for="lowercase" class="form-check-label">(e.g. abcdefg)</label>
+                  <label for="lowercase" class="form-check-label fw-bold">(e.g. abcdefg)</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group form-row mb-2 d-flex align-items-center">
-              <label for="uppercase" class="col-md-4 col-form-label">Include
+              <label for="uppercase" class="col-md-4 col-form-label fw-bold">Include
                 Uppercase Characters</label>
               <div class="col-md-8">
                 <div class="form-check form-switch">
@@ -50,14 +52,15 @@
                     type="checkbox"
                     id="uppercase"
                     name="uppercase"
+                    {{#if options.uppercase}}checked{{/if}}
                   />
-                  <label for="uppercase" class="form-check-label">(e.g. ABCDEFG)</label>
+                  <label for="uppercase" class="form-check-label fw-bold">(e.g. ABCDEFG)</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group form-row mb-2 d-flex align-items-center">
-              <label for="numbers" class="col-md-4 col-form-label">Include
+              <label for="numbers" class="col-md-4 col-form-label fw-bold">Include
                 Numbers</label>
               <div class="col-md-8">
                 <div class="form-check form-switch">
@@ -66,14 +69,15 @@
                     type="checkbox"
                     id="numbers"
                     name="numbers"
+                    {{#if options.numbers}}checked{{/if}}
                   />
-                  <label for="numbers" class="form-check-label">(e.g. 123456)</label>
+                  <label for="numbers" class="form-check-label fw-bold">(e.g. 123456)</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group form-row mb-2 d-flex align-items-center">
-              <label for="symbols" class="col-md-4 col-form-label">Include
+              <label for="symbols" class="col-md-4 col-form-label fw-bold">Include
                 Symbols</label>
               <div class="col-md-8">
                 <div class="form-check form-switch">
@@ -82,23 +86,25 @@
                     type="checkbox"
                     id="symbols"
                     name="symbols"
+                    {{#if options.symbols}}checked{{/if}}
                   />
-                  <label for="symbols" class="form-check-label">(e.g. @#$%)</label>
+                  <label for="symbols" class="form-check-label fw-bold">(e.g. @#$%)</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group form-row mb-2 d-flex">
-              <label for="exclude" class="col-md-4 col-form-label">
+              <label for="excludeCharacters" class="col-md-4 col-form-label fw-bold">
                 Exclude Characters
               </label>
               <div class="col-md-8">
                 <input
                   type="text"
-                  name="exclude"
+                  name="excludeCharacters"
                   class="form-control"
-                  id="exclude"
-                />
+                  id="excludeCharacters"
+                  value={{options.excludeCharacters}}
+                >
                 <small style="color:gray">These characters will not appear in
                   the password</small>
               </div>
